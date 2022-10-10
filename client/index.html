@@ -2,20 +2,29 @@
 <html>
   <head>
     <title>Back End Assessment</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body class="container">
-    <button id="complimentButton">Get a compliment</button>
+    <div class="buttonContainer">
+      <button class="buttons" id="complimentButton">Get a compliment</button>
 
-    <button id="fortuneButton">Get a fortune</button>
+      <button class="buttons" id="fortuneButton">Get a fortune</button>
+    </div>
     <form class="userForm">
       <input type="text" id="name" placeholder="Name">
       <input type="text" id="age" placeholder="Age">
       <input type="text" id="goal" placeholder="Life Goal">
       <button id="submitButton">Submit</button>
     </form>
+    <div class="user-container">
+      <form class="updateForm">
+        <input type="text" id="userName" placeholder="Name">
+        <input type="text" id="updatedGoal" placeholder="New Goal">
+        <button type ="submit" id="changeButton">Change</button>
+      </form>
+    </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
-    
   </body>
 </html>

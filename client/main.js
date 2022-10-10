@@ -1,9 +1,8 @@
-
-
 const complimentBtn = document.getElementById("complimentButton");
 const fortuneBtn = document.getElementById("fortuneButton");
 const submit = document.querySelector(".userForm");
-const deleteBtn = document.getElementById("deleteButton")
+const userContainer = document.querySelector(".user-container")
+const change = document.getElementById("changeButton")
 
 const getCompliment = () => {
     axios.get("http://localhost:4000/api/compliment/")
@@ -29,6 +28,7 @@ const createUser = (event) => {
     let newGoal = document.getElementById("goal").value
 
     let newUser = {
+        id: 0,
         name: newName, 
         age: parseInt(newAge),
         goal: newGoal
@@ -36,29 +36,57 @@ const createUser = (event) => {
     
     axios.post("http://localhost:4000/api/users", newUser)
         .then(res => {
+            const user = res.data
+
             const userCard = document.createElement("div");
-            userCard.classList.add('user-card')
+            userCard.classList.add("user-card")
+            userCard.setAttribute('id', `${user.id}`);
             userCard.innerHTML = 
-            `<p>    
+            `<p class="user">    
                 Name: ${newName} <br>
                 Age: ${newAge} <br>
                 Goal: ${newGoal}
             </p>
-            <button id="deleteButton">Delete</button>`
+            <button onclick="deleteUser(${user.id})" id="deleteButton">Delete</button>`
 
-            document.body.appendChild(userCard)
+            userContainer.appendChild(userCard)
+            console.log(user)
         })
+}
+const deleteUser = (id) => {
+    axios.delete(`http:localhost:4000/api/users/${id}`)
+    .then(res => {
+        let userCard = document.querySelector(`#${id}`);
+        delete userCard;
+    })
+};
 
-const deleteUser = () => {
-    axios.delete(`http://localhost:4000/${newName}`)
-        .then(res => {
-            console.log(res.data);
-        })
+const editGoal = (id) => {
+    event.preventDefault()
+
+    let updatedGoal = document.getElementById("updatedGoal").value
+    let name = document.getElementById("userName").value
+    let updatedUser = {
+        name,
+        goal: updatedGoal
     }
 
+    axios.put(`http:localhost:4000/api/users/${id}`, updatedUser)
+        .then(res => {
+            let user = res.data
+            let oldGoal = document.getElementById(`${user.id}`)
+            oldGoal.innerHTML = 
+                `<p class="user">    
+                    Name: ${user.name} <br>
+                    Age: ${user.age} <br>
+                    Goal: ${user.goal}
+                </p>
+                <button onclick="deleteUser(${user.id})" id="deleteButton">Delete</button>`
+        })
 }
 
 
 complimentBtn.addEventListener('click', getCompliment);
 fortuneBtn.addEventListener('click', getFortune);
 submit.addEventListener('submit', createUser);
+change.addEventListener('click', editGoal);

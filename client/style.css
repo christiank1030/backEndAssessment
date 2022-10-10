@@ -1,0 +1,88 @@
+body {
+    background-color: black;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buttons {
+    height: 100px;
+    width: 300px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    background-color: rgb(255, 128, 0);
+    border: 1px solid white;
+    box-shadow: 3px 7px 10px white;
+}
+
+#complimentButton {
+    margin: 20px;
+}
+
+#fortuneButton {
+    margin-bottom: 40px;
+}
+
+.userForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input {
+    margin: 20px;
+    height: 50px;
+    width: 300px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+}
+
+#submitButton {
+    height: 50px;
+    width: 200px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    background-color: rgb(255, 128, 0);
+    border: 1px solid white;
+    border-radius: 20px;
+    box-shadow: 1px 4px 10px white;
+}
+
+.user-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    height: 150px;
+    width: 300px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    box-shadow: 1px 4px 10px white;
+}
+
+#deleteButton {
+    width: 100px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    background-color: rgb(255, 128, 0);
+    border: 1px solid white;
+    border-radius: 20px;
+    box-shadow: 1px 4px 10px white;
+}

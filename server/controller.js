@@ -1,6 +1,5 @@
-const { response } = require("express");
-
 const userDatabase = []
+let globalId = 1;
 
 module.exports = {
 
@@ -24,24 +23,28 @@ module.exports = {
     createUser: (req, res) => {
         const { name, age, goal } = req.body
         let userToAdd = {
+            id: globalId,
             name,
             age: parseInt(age),
             goal,
         }
         userDatabase.push(userToAdd);
-        res.status(200).json({message: 'success', userDatabase});
+        console.log(userDatabase)
+        res.status(200).send(userToAdd);
+        globalId++;
     },
     deleteUser: (req, res) => {
-        let userToDelete = req.params.name;
+        let position = userDatabase.find((userObj) => userObj.id === req.params.id)
+            userDatabase.splice(position, 1);
+            res.status(200).send(userDatabase)
+    },
+    editGoal: (req, res) => {
+        const { name, goal } = req.body
         for(let i = 0; i < userDatabase.length; i++) {
-            if(userDatabase[i].name === userToDelete) {
-                userDatabase.splice(i, 1)
-                response.status(200).send("User deleted")
+            if(userDatabase[i].name === name) {
+                userDatabase[i].goal = goal;
+                res.status(200).send(userDatabase[i])
             }
         }
     }
-
-
 }
-
-console.log(userDatabase)
